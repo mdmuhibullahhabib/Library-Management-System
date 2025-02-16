@@ -8,7 +8,6 @@ function Navbar() {
 
     return (
         <div className="shadow-md ">
-
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">

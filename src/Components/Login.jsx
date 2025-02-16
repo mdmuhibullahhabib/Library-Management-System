@@ -22,7 +22,6 @@ function Login() {
     <div>
        <div className='flex justify-center items-center'>
       <div className="card bg-base-100 w-full max-w-sm shadow-2xl rounded-none">
-
         <form onSubmit={handleSubmit} className="card-body">
           <div className="form-control mt-6">
             <h2 className="font-semibold text-2xl text-center">Login your account</h2>

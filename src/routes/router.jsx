@@ -3,12 +3,19 @@ import AuthLayout from "../layouts/AuthLayout"
 import Login from "../Components/Login"
 import Register from "../Components/Register"
 import HomeLayout from "../layouts/HomeLayout"
+import AddBook from "../Pages/AddBook"
 
 
 const router = createBrowserRouter([
     {
         path:"/",
-        element: <HomeLayout></HomeLayout>
+        element: <HomeLayout></HomeLayout>,
+        children:[
+            {
+                path:"add-book",
+                element: <AddBook></AddBook>
+            },
+        ]
     },
 
     {
