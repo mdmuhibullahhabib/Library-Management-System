@@ -1,6 +1,7 @@
 import Navbar from '../Components/Navbar'
 import Footer from '../Components/Footer'
 import { Outlet } from 'react-router-dom';
+import Banner from '../Components/Banner';
 
 const HomeLayout = () => {
 
@@ -8,6 +9,7 @@ const HomeLayout = () => {
     <div>
       <header>
         <Navbar></Navbar>
+        <Banner></Banner>
       </header>
       <main className=''>
         <section className='bg-[#f4f4f4]'>
