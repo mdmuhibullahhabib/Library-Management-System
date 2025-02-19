@@ -2,38 +2,29 @@ import React, { useState } from "react";
 import { FaUpload, FaPlus } from "react-icons/fa";
 
 const AddBookPage = () => {
-    const [formData, setFormData] = useState({
-        image: null,
-        name: "",
-        quantity: 0,
-        authorName: "",
-        category: "",
-        shortDescription: "",
-        rating: 1,
-    });
+ 
+    const handleSubmitBook = (event) => {
+    event.preventDefault();
+    const form = event.target;
 
-    const handleChange = (e) => {
-        const { name, value, files } = e.target;
-        if (name === "image") {
-            setFormData({ ...formData, [name]: files[0] });
-        } else {
-            setFormData({ ...formData, [name]: value });
-        }
-    };
+    const image = form.image.value;
+    const authorName = form.authorName.value;
+    const shortDescription = form.shortDescription.value;
+    const bookName = form.bookName.value;
+    const quantity = form.quantity.value;
+    const category = form.category.value; 
+    const rating = form.rating.value; 
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Handle form submission (e.g., send data to the backend)
-        console.log("Form Data:", formData);
-        alert("Book added successfully!");
-    };
-
+    const newBook = { image, authorName, quantity, shortDescription, bookName, category, rating };
+    console.log(newBook)
+    }
     return (
         <div className="p-8 bg-base-200 min-h-screen">
-            <h1 className="text-3xl font-bold mb-6">Add a New Book</h1>
-            <form onSubmit={handleSubmit} className="max-w-2xl mx-auto">
+            <h1 className="text-3xl font-bold text-center mb-6">Add a New Book</h1>
+            <form onSubmit={handleSubmitBook} className="max-w-2xl mx-auto">
+
                 {/* Image Upload */}
-                <div className="form-control mb-4">
+                {/* <div className="form-control mb-4">
                     <label className="label">
                         <span className="label-text">Upload Book Cover Image</span>
                     </label>
@@ -47,6 +38,17 @@ const AddBookPage = () => {
                         />
                         <FaUpload className="text-xl" />
                     </div>
+                </div> */}
+
+                <div className="form-control mb-4">
+                    <label className="label font-semibold">Image URL</label>
+                    <input
+                        type="text"
+                        name="image"
+                        placeholder="Enter image URL"
+                        className="input input-bordered w-full"
+                        required
+                    />
                 </div>
 
                 {/* Book Name */}
@@ -56,9 +58,7 @@ const AddBookPage = () => {
                     </label>
                     <input
                         type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
+                        name="bookName"
                         placeholder="Enter book title"
                         className="input input-bordered w-full"
                         required
@@ -73,8 +73,6 @@ const AddBookPage = () => {
                     <input
                         type="number"
                         name="quantity"
-                        value={formData.quantity}
-                        onChange={handleChange}
                         placeholder="Enter quantity"
                         className="input input-bordered w-full"
                         min="0"
@@ -90,8 +88,6 @@ const AddBookPage = () => {
                     <input
                         type="text"
                         name="authorName"
-                        value={formData.authorName}
-                        onChange={handleChange}
                         placeholder="Enter author name"
                         className="input input-bordered w-full"
                         required
@@ -105,8 +101,6 @@ const AddBookPage = () => {
                     </label>
                     <select
                         name="category"
-                        value={formData.category}
-                        onChange={handleChange}
                         className="select select-bordered w-full"
                         required
                     >
@@ -128,8 +122,6 @@ const AddBookPage = () => {
                     </label>
                     <textarea
                         name="shortDescription"
-                        value={formData.shortDescription}
-                        onChange={handleChange}
                         placeholder="Enter a brief description"
                         className="textarea textarea-bordered w-full h-24"
                         required
@@ -144,8 +136,6 @@ const AddBookPage = () => {
                     <input
                         type="number"
                         name="rating"
-                        value={formData.rating}
-                        onChange={handleChange}
                         placeholder="Enter rating"
                         className="input input-bordered w-full"
                         min="1"
