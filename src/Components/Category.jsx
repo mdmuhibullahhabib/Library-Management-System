@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBook } from "react-icons/fa";
+import Banner from "./Banner";
 
 const categories = [
   { name: "Novel", path: "/category/novel" },
@@ -21,16 +22,20 @@ const Category = () => {
   console.log(categories)
 
   return (
-    <div className="w-11/12 mx-auto text-center ">
+    <div className="">
+      <div className="">
+        <Banner></Banner>
+      </div>
+      <div className="w-11/12 mx-auto text-center ">
         <h2 className="font-bold text-4xl text center my-4">Books Categories</h2>
-
-      <div className="max-w-4xl mx-auto p-6 grid grid-cols-2 md:grid-cols-4 gap-6">
-        {categories.map((category) => (
-          <Link to={category.category_name} className="card bg-base-100 shadow-xl p-4 text-center hover:scale-105 transition">
-            <FaBook className="text-3xl text-primary mx-auto" />
-            <h3 className="text-lg font-bold mt-2">{category.category_name}</h3>
-          </Link>
-        ))}
+        <div className="max-w-4xl mx-auto p-6 grid grid-cols-2 md:grid-cols-4 gap-6">
+          {categories.map((category) => (
+            <Link to={`category/${category.category_name}`} className="card bg-base-100 shadow-xl p-4 text-center hover:scale-105 transition">
+              <FaBook className="text-3xl text-primary mx-auto" />
+              <h3 className="text-lg font-bold mt-2">{category.category_name}</h3>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );

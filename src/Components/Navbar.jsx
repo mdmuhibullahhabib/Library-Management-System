@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { FcLibrary } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 // import { AuthContext } from "../Provider/AuthProvider";
 
 function Navbar() {
-    //   const { user, logOut } = useContext(AuthContext);
+      const { user, logOut } = useContext(AuthContext);
 
     return (
         <div className="shadow-md ">
@@ -32,7 +33,7 @@ function Navbar() {
                                 <Link to="/">Home</Link>
                             </li>
                             <li>
-                                <Link to="/all-books">All Books</Link>
+                                <Link to="/books">All Books</Link>
                             </li>
                             <li>
                                 <Link to="/add-book">Add Book</Link>
@@ -52,7 +53,7 @@ function Navbar() {
                             <Link to="/">Home</Link>
                         </li>
                         <li>
-                            <Link to="/all-books">All Books</Link>
+                            <Link to="/books">All Books</Link>
                         </li>
                         <li>
                             <Link to="/add-book">Add Book</Link>
@@ -87,10 +88,10 @@ function Navbar() {
                                     </ul>
                                 </div>
                             </div>
-                            {/* {
+                            {
             user && user?.email ? (<button onClick={logOut} className="btn btn-neutral rounded-none">Log Out</button>) :
               (<Link to="/auth/login" className="btn btn-neutral rounded-none">Login</Link>)
-          } */}
+          }
                         </div>
                     </div>
                 </div>

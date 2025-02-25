@@ -1,23 +1,56 @@
-import React from 'react'
-import { FaGoogle } from 'react-icons/fa'
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../Provider/AuthProvider';
+import Swal from 'sweetalert2';
+import { FaGoogle } from 'react-icons/fa';
 
 function Login() {
 
-    const handleSubmit = (e) =>{
-        e.preventDefault();
+  const { logIn, setUser, signInWithGoogle } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-        const form = e.target;
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
 
-        const email = form.email.value;
-        const password = form.password.value;
+    navigate(location?.state ? location.state : "/")
+    Swal.fire({
+      title: "Login Successfully!",
+      icon: "success",
+      draggable: true
+    });
+  }
 
-        console.log(email, password)
-        }
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-        const handleGoogleSignIn = () =>{
+    const form = e.target;
 
-        }
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log({ email, password })
+
+    logIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        setUser(user)
+        console.log(user);
+        // navigate(location?.state ? location.state : "/")
+        Swal.fire({
+          title: "Login Successfully!",
+          icon: "success",
+          draggable: true
+        });
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: 'Error!',
+          text: 'please try again with valid email & password',
+          icon: 'error',
+          draggable: true
+        })
+      });
+  }
   return (
     <div>
        <div className='flex justify-center items-center'>

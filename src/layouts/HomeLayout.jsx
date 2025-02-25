@@ -3,6 +3,7 @@ import Footer from '../Components/Footer'
 import Banner from '../Components/Banner';
 import Category from '../Components/Category';
 import Extra from '../Components/Extra';
+import { Outlet } from 'react-router-dom';
 
 const HomeLayout = () => {
 
@@ -10,21 +11,19 @@ const HomeLayout = () => {
     <div>
       <header>
         <nav>
-        <Navbar></Navbar>
+          <Navbar></Navbar>
         </nav>
-        <Banner></Banner>
+
       </header>
 
       <main className='w-11/12 mx-auto '>
 
         <section className=''>
-          <Category></Category>
+        <Outlet></Outlet>
         </section>
-
-<section>
-  <Extra></Extra>
-</section>
-
+        <section>
+          <Extra></Extra>
+        </section>
       </main>
 
       <footer>

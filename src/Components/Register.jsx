@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-// import { AuthContext } from '../Provider/AuthProvider';
+import { AuthContext } from '../Provider/AuthProvider';
 
 function Register() {
-//   const { createNewUser, setUser, updateUserProfile } = useContext(AuthContext);
+  const { createNewUser, setUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
   const [error, setError] = useState('');
 
@@ -46,7 +46,7 @@ function Register() {
               },
               body: JSON.stringify(user),
             })
-            navigate("/");
+            // navigate("/");
             Swal.fire({
               title: "Registration Successfully!",
               icon: "success",

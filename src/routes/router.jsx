@@ -4,22 +4,81 @@ import Login from "../Components/Login"
 import Register from "../Components/Register"
 import HomeLayout from "../layouts/HomeLayout"
 import AddBook from "../Pages/AddBook"
+import BookCategories from "../Pages/BookCategories"
+import AllBooks from "../Pages/AllBooks"
+import UpdateBookForm from "../Pages/UpdateBookForm "
+import BookDetails from "../Pages/BookDetails"
+import BorrowedBooks from "../Pages/BorrowedBooks"
+import Category from "../Components/Category"
+import PrivateRoute from "./PrivateRouter"
 
 
 const router = createBrowserRouter([
     {
-        path:"/",
+        path: "/",
         element: <HomeLayout></HomeLayout>,
-        children:[]
+        children: [
+            {
+                path: "",
+                element: <Category></Category>
+            },
+            {
+                path: "/add-book",
+                element: (
+                    <PrivateRoute>
+                        <AddBook></AddBook>
+                    </PrivateRoute>
+                ),
+            },
+            {
+                path: "/books",
+                element: (
+                    <PrivateRoute>
+                        <AllBooks></AllBooks>
+                    </PrivateRoute>
+                ),
+                loader: () => fetch('http://localhost:5000/books'),
+            },
+            {
+                path: "/borrowed-books",
+                element: (
+                    <PrivateRoute>
+                        <BorrowedBooks></BorrowedBooks>
+                    </PrivateRoute>
+                ),
+                loader: () => fetch('http://localhost:5000/borrowed-book'),
+            },
+        ]
 
     },
+
     {
-        path:"add-book",
-        element: <AddBook></AddBook>
+        path: "/update-book",
+        element: (
+            <PrivateRoute>
+                <UpdateBookForm></UpdateBookForm>
+            </PrivateRoute>
+        ),
+        loader: () => fetch('http://localhost:5000/books'),
+    },
+    {
+        path: "/category/:category",
+        element: <BookCategories></BookCategories>,
+        loader: ({ params }) => fetch(`http://localhost:5000/category/${params.category}`),
     },
 
     {
-        path:"/library",
+        path: "/details/:_id",
+        element: (
+            <PrivateRoute>
+                <BookDetails></BookDetails>
+            </PrivateRoute>
+        ),
+        loader: ({ params }) => fetch(`http://localhost:5000/details/${params._id}`),
+    },
+
+    {
+        path: "/library",
         element: <h2>library</h2>
 
     },
@@ -38,7 +97,7 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path:"*",
+        path: "*",
         element: <h2>error</h2>
 
     }
