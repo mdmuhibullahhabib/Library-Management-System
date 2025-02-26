@@ -46,7 +46,7 @@ function Register() {
               },
               body: JSON.stringify(user),
             })
-            // navigate("/");
+            navigate("/");
             Swal.fire({
               title: "Registration Successfully!",
               icon: "success",
@@ -58,7 +58,6 @@ function Register() {
             setError(error.message)
           })
       })
-
   }
   return (
     <div className='flex justify-center items-center'>

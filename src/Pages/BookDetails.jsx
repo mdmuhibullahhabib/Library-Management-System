@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaBook, FaUser, FaTags, FaStar, FaCalendar } from "react-icons/fa";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const BookDetails = () => {
   const [showModal, setShowModal] = useState(false);
   const [returnDate, setReturnDate] = useState("");
-
+  const { user } = useContext(AuthContext)
   const book = useLoaderData();
   const navigate = useNavigate();
-
+  console.log(user)
   const handleBorrowClick = () => {
     setShowModal(true);
   };
@@ -110,8 +111,8 @@ const BookDetails = () => {
             <form onSubmit={handleSubmit}>
               {/* User Info */}
               <div className="mb-4">
-                <p className="text-lg"><span className="font-semibold">Name:</span> User Name</p>
-                <p className="text-lg"><span className="font-semibold">Email:</span> user@example.com</p>
+                <p className="text-lg"><span className="font-semibold">Name:</span>{user.displayName}</p>
+                <p className="text-lg"><span className="font-semibold">Email:</span> {user.email}</p>
               </div>
 
               {/* Book Cover Image */}
