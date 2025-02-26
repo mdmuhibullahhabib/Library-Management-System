@@ -8,7 +8,7 @@ function Navbar() {
       const { user, logOut } = useContext(AuthContext);
 
     return (
-        <div className="shadow-md ">
+        <div className="shadow-md w-11/12 mx-auto">
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -44,7 +44,7 @@ function Navbar() {
                         </ul>
                     </div>
                     <div className="">
-                        <FcLibrary className=" text-5xl" />
+                        <FcLibrary to={'/'} className=" text-5xl" />
                     </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">

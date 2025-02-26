@@ -8,21 +8,21 @@ const Extra = () => {
       id: 1,
       title: "The Great Gatsby",
       author: "F. Scott Fitzgerald",
-      image: "https://via.placeholder.com/150x200?text=Book+Cover",
+      image: "https://i.ibb.co.com/ksSmWbJT/download.jpg",
       rating: 4.5,
     },
     {
       id: 2,
       title: "To Kill a Mockingbird",
       author: "Harper Lee",
-      image: "https://via.placeholder.com/150x200?text=Book+Cover",
+      image: "https://i.ibb.co.com/DgkC7gCX/download-1.jpg",
       rating: 4.8,
     },
     {
       id: 3,
       title: "1984",
       author: "George Orwell",
-      image: "https://via.placeholder.com/150x200?text=Book+Cover",
+      image: "https://i.ibb.co.com/xSrD95C6/download-2.jpg",
       rating: 4.7,
     },
   ];
@@ -54,8 +54,6 @@ const Extra = () => {
 
   return (
     <div className="p-8 bg-base-200">
-      {/* Banner Slider */}
-      {/* <BannerSlider /> */}
 
       {/* Featured Books Section */}
       <section className="my-12">
