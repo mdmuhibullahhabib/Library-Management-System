@@ -1,35 +1,47 @@
 import React, { useState } from "react";
 import { FaBook, FaUser, FaTags, FaStar, FaArrowLeft } from "react-icons/fa";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const UpdateBookForm = ({ books, onUpdate }) => {
-  const { id } = useParams();
+const UpdateBookForm = () => {
+  const book = useLoaderData()
   const navigate = useNavigate();
-  const book = books.find((book) => book.id === id);
 
-  // State for form fields
-  const [formData, setFormData] = useState({
-    image: book.image,
-    name: book.name,
-    authorName: book.authorName,
-    category: book.category,
-    rating: book.rating,
-  });
-
-  // Handle Input Changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  // Handle Form Submission
-  const handleSubmit = (e) => {
+  const handleUpdate = e => {
     e.preventDefault();
-    onUpdate(id, formData); // Pass updated data to the parent component
-    navigate("/all-books"); // Redirect back to the All Books page
+    const form = e.target;
+
+    const image = form.image.value;
+    const bookName = form.bookName.value;
+    const authorName = form.authorName.value;
+    const category = form.category.value;
+    const rating = form.rating.value;
+
+    const updateBook = { image, bookName, authorName, category, rating}
+    console.log(updateBook)
+
+    // send data to the server and database
+    fetch(`http://localhost:5000/book/${book._id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(updateBook)
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.modifiedCount) {
+          Swal.fire({
+            title: 'Success!',
+            text: 'Book updated successfully',
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          });
+          e.target.reset();
+          // navigate("/all-books"); 
+        }
+      })
   };
 
   return (
@@ -45,20 +57,17 @@ const UpdateBookForm = ({ books, onUpdate }) => {
         </button>
 
         <h1 className="text-3xl font-bold mb-6">Update Book</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleUpdate}>
           {/* Image Upload */}
           <div className="form-control mb-4">
-            <label className="label">
-              <span className="label-text">Book Cover Image</span>
-            </label>
+            <label className="label font-semibold">Image URL</label>
             <input
-              type="file"
+              type="text"
               name="image"
-              onChange={(e) =>
-                setFormData({ ...formData, image: e.target.files[0] })
-              }
-              className="file-input file-input-bordered w-full"
-              accept="image/*"
+              defaultValue={book.image}
+              placeholder="Enter image URL"
+              className="input input-bordered w-full"
+              required
             />
           </div>
 
@@ -69,9 +78,8 @@ const UpdateBookForm = ({ books, onUpdate }) => {
             </label>
             <input
               type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
+              name="bookName"
+              defaultValue={book.bookName}
               placeholder="Enter book title"
               className="input input-bordered w-full"
               required
@@ -86,8 +94,7 @@ const UpdateBookForm = ({ books, onUpdate }) => {
             <input
               type="text"
               name="authorName"
-              value={formData.authorName}
-              onChange={handleChange}
+              defaultValue={book.authorName}
               placeholder="Enter author name"
               className="input input-bordered w-full"
               required
@@ -101,8 +108,7 @@ const UpdateBookForm = ({ books, onUpdate }) => {
             </label>
             <select
               name="category"
-              value={formData.category}
-              onChange={handleChange}
+              defaultValue={book.category}
               className="select select-bordered w-full"
               required
             >
@@ -122,8 +128,7 @@ const UpdateBookForm = ({ books, onUpdate }) => {
             <input
               type="number"
               name="rating"
-              value={formData.rating}
-              onChange={handleChange}
+              defaultValue={book.rating}
               placeholder="Enter rating"
               className="input input-bordered w-full"
               min="1"

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBook } from "react-icons/fa";
 import Banner from "./Banner";
+import Extra from "./Extra";
 
 const categories = [
   { name: "Novel", path: "/category/novel" },
@@ -36,6 +37,9 @@ const Category = () => {
             </Link>
           ))}
         </div>
+      </div>
+      <div>
+      <Extra></Extra>
       </div>
     </div>
   );

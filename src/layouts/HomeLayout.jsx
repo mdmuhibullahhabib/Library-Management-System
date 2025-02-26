@@ -21,9 +21,7 @@ const HomeLayout = () => {
         <section className=''>
         <Outlet></Outlet>
         </section>
-        <section>
-          <Extra></Extra>
-        </section>
+        
       </main>
 
       <footer>

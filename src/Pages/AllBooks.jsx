@@ -1,17 +1,13 @@
 import React from "react";
 import { FaBook, FaUser, FaTags, FaStar, FaEdit } from "react-icons/fa";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 
 const AllBooks = () => {
 
-    const books =useLoaderData();
+  const books = useLoaderData();
 
   const navigate = useNavigate();
 
-  // Handle Update Button Click
-  const handleUpdateClick = (bookId) => {
-    navigate(`/update-book/${bookId}`); // Redirect to the update form page
-  };
 
   return (
     <div className="p-8 bg-base-200 min-h-screen">
@@ -56,13 +52,13 @@ const AllBooks = () => {
 
               {/* Update Button */}
               <div className="card-actions justify-end mt-4">
-                <button
-                  onClick={() => handleUpdateClick(book._id)}
+                <Link
+                  to={`/update-book/${book._id}`}
                   className="btn btn-primary"
                 >
                   <FaEdit className="mr-2" />
                   Update
-                </button>
+                </Link>
               </div>
             </div>
           </div>
