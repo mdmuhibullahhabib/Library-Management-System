@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { FaBook, FaUser, FaTags, FaStar, FaArrowLeft } from "react-icons/fa";
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import {  FaArrowLeft } from "react-icons/fa";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UpdateBookForm = () => {
@@ -39,7 +39,7 @@ const UpdateBookForm = () => {
             confirmButtonText: 'Ok'
           });
           e.target.reset();
-          // navigate("/all-books"); 
+          navigate("/books"); 
         }
       })
   };
