@@ -11,6 +11,7 @@ import BookDetails from "../Pages/BookDetails"
 import BorrowedBooks from "../Pages/BorrowedBooks"
 import Category from "../Components/Category"
 import PrivateRoute from "./PrivateRouter"
+import ErrorPage from "../Components/Error"
 
 
 const router = createBrowserRouter([
@@ -98,7 +99,7 @@ const router = createBrowserRouter([
     },
     {
         path: "*",
-        element: <h2>error</h2>
+        element: <ErrorPage></ErrorPage>
 
     }
 ])
