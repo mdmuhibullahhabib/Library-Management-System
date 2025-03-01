@@ -1,5 +1,5 @@
 import React from "react";
-import { FaBook, FaTags, FaCalendar, FaArrowLeft } from "react-icons/fa";
+import { FaBook, FaTags, FaCalendar } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const BorrowedCard = ({ book, onReturn }) => {
@@ -15,12 +15,27 @@ const BorrowedCard = ({ book, onReturn }) => {
       confirmButtonText: "Yes, return it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        onReturn(book._id); // Call the parent function to handle the return
-        Swal.fire({
-          title: "Returned!",
-          text: "The book has been returned.",
-          icon: "success",
-        });
+
+        fetch(`http://localhost:5000/borrowed-book/${book._id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if(data.deletedCount) {
+              console.log(data)
+            fetch(`http://localhost:5000/books/${book._id}`, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ quantity: book.quantity + 1 }),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log(data)
+                Swal.fire("Returned!", "The book has been returned.", "success");
+                onReturn(book._id);
+              });
+            }
+          });
       }
     });
   };
@@ -61,7 +76,7 @@ const BorrowedCard = ({ book, onReturn }) => {
           {new Date(book.returnDate).toLocaleDateString()}
         </p>
 
-        {/* Return Button (Red Color) */}
+        {/* Return Button */}
         <div className="card-actions justify-end mt-4">
           <button
             onClick={handleReturnClick}

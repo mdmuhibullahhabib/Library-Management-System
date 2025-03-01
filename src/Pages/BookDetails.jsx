@@ -33,7 +33,9 @@ const BookDetails = () => {
     }
 
     const borrowedBook = {
-      bookId: book._id,
+      email:user.email,
+      quantity: book.quantity,
+      // bookId: book._id,
       name: book.bookName,
       authorName: book.authorName,
       category: book.category,
@@ -56,6 +58,7 @@ const BookDetails = () => {
             text: "Book Borrowed Successfully",
             icon: "success",
           });
+          navigate("/borrowed-books");
           setShowModal(false);
         }
         console.log(data)
@@ -73,16 +76,6 @@ const BookDetails = () => {
       });
   };
 
-  // ----------
-
-  //   if (data.insertedId) {
-  //     fetch(`http://localhost:5000/books/${book._id}`, {
-  //    method: "PUT",
-  //    headers: { "Content-Type": "application/json" },
-  //    body: JSON.stringify({ quantity: book.quantity - 1 }),
-  //  })
-  // }
-  // -----------
 
   return (
     <div className="p-8 bg-base-200 min-h-screen">
@@ -98,8 +91,9 @@ const BookDetails = () => {
           </figure>
 
           <div className="flex-grow">
+
             <h1 className="text-3xl font-bold mb-4">
-              <FaBook className="inline mr-2" /> {book.name}
+              <FaBook className="inline mr-2" /> {book.bookName}
             </h1>
             <p className="flex items-center text-lg mb-2">
               <FaUser className="mr-2" /> <span className="font-semibold">Author:</span> {book.authorName}
