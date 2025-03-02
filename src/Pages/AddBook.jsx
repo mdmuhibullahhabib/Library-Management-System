@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { FaUpload, FaPlus } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const AddBookPage = () => {
+    const navigate = useNavigate();
  
     const handleSubmitBook = (event) => {
     event.preventDefault();
@@ -35,6 +37,7 @@ const AddBookPage = () => {
                 text: 'Book Added Successfully',
                 icon: 'success',
               })
+              navigate("/");
         }
     })
 
