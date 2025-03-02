@@ -38,7 +38,7 @@ const router = createBrowserRouter([
                         <AllBooks></AllBooks>
                     </PrivateRoute>
                 ),
-                loader: () => fetch('http://localhost:5000/books'),
+                loader: () => fetch('https://library-management-server-theta.vercel.app/books'),
             },
             {
                 path: "/borrowed-books",
@@ -47,7 +47,7 @@ const router = createBrowserRouter([
                         <BorrowedBooks></BorrowedBooks>
                     </PrivateRoute>
                 ),
-                loader: () => fetch('http://localhost:5000/borrowed-book'),
+                loader: () => fetch('https://library-management-server-theta.vercel.app/borrowed-book'),
             },
         ]
 
@@ -60,12 +60,12 @@ const router = createBrowserRouter([
                 <UpdateBookForm></UpdateBookForm>
             </PrivateRoute>
         ),
-        loader: ({ params }) => fetch(`http://localhost:5000/book/${params._id}`),
+        loader: ({ params }) => fetch(`https://library-management-server-theta.vercel.app/book/${params._id}`),
     },
     {
         path: "/category/:category",
         element: <BookCategories></BookCategories>,
-        loader: ({ params }) => fetch(`http://localhost:5000/category/${params.category}`),
+        loader: ({ params }) => fetch(`https://library-management-server-theta.vercel.app/category/${params.category}`),
     },
 
     {
@@ -75,7 +75,7 @@ const router = createBrowserRouter([
                 <BookDetails></BookDetails>
             </PrivateRoute>
         ),
-        loader: ({ params }) => fetch(`http://localhost:5000/book/${params._id}`),
+        loader: ({ params }) => fetch(`https://library-management-server-theta.vercel.app/book/${params._id}`),
     },
 
     {

@@ -19,7 +19,7 @@ const AddBookPage = () => {
     const newBook = { image, authorName, quantity, shortDescription, bookName, category, rating };
     console.log(newBook)
 
-    fetch('http://localhost:5000/add-book', {
+    fetch('https://library-management-server-theta.vercel.app/add-book', {
         method:'POST',
         headers:{
             'Content-Type':'application/json',

@@ -21,7 +21,7 @@ const UpdateBookForm = () => {
     console.log(updateBook)
 
     // send data to the server and database
-    fetch(`http://localhost:5000/book/${book._id}`, {
+    fetch(`https://library-management-server-theta.vercel.app/book/${book._id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'

@@ -14,7 +14,7 @@
 
 //   // Fetch book details from the server
 //   useEffect(() => {
-//     fetch(`http://localhost:5000/book/${id}`)
+//     fetch(`https://library-management-server-theta.vercel.app/book/${id}`)
 //       .then((res) => res.json())
 //       .then((data) => setBook(data))
 //       .catch((error) => console.error("Error fetching book:", error));
@@ -30,7 +30,7 @@
 //       };
 
 //       // Update database: Decrease book quantity
-//       const response = await fetch(`http://localhost:5000/borrow/${id}`, {
+//       const response = await fetch(`https://library-management-server-theta.vercel.app/borrow/${id}`, {
 //         method: "POST",
 //         headers: { "Content-Type": "application/json" },
 //         body: JSON.stringify(borrowInfo),

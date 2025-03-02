@@ -45,7 +45,7 @@ const BookDetails = () => {
     };
     console.log(borrowedBook)
 
-    fetch("http://localhost:5000/borrowed-book", {
+    fetch("https://library-management-server-theta.vercel.app/borrowed-book", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(borrowedBook),
@@ -63,7 +63,7 @@ const BookDetails = () => {
         }
         console.log(data)
         if (data.insertedId) {
-          fetch(`http://localhost:5000/books/${book._id}`, {
+          fetch(`https://library-management-server-theta.vercel.app/books/${book._id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ quantity: book.quantity - 1 }),

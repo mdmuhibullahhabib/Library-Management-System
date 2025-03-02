@@ -16,14 +16,14 @@ const BorrowedCard = ({ book, onReturn }) => {
     }).then((result) => {
       if (result.isConfirmed) {
 
-        fetch(`http://localhost:5000/borrowed-book/${book._id}`, {
+        fetch(`https://library-management-server-theta.vercel.app/borrowed-book/${book._id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
           .then((data) => {
             if(data.deletedCount) {
               console.log(data)
-            fetch(`http://localhost:5000/books/${book._id}`, {
+            fetch(`https://library-management-server-theta.vercel.app/books/${book._id}`, {
               method: "PUT",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ quantity: book.quantity + 1 }),
